@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- Paleta principal -->
+    <color name="purple_200">#FFC4B5FD</color>
+    <color name="purple_500">#FF5B3FD1</color>
+    <color name="purple_700">#FF38238F</color>
+    <color name="teal_200">#FF76D7C4</color>
+    <color name="teal_700">#FF157A6E</color>
+    <color name="primary_dark">#FF38238F</color>
+    <color name="secondary">#FF157A6E</color>
+
+    <!-- Colores de la interfaz -->
+    <color name="background_app">#FFF7F7FC</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="card_border">#FFE4E1F0</color>
+    <color name="status_background">#FFF0EEFA</color>
+    <color name="counter_background">#FFE9E4FF</color>
+    <color name="text_primary">#FF211D2E</color>
+    <color name="text_secondary">#FF686273</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

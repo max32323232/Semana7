@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">Intents Android</string>
+
+    <!-- Pantalla principal -->
+    <string name="main_title">Intents</string>
+    <string name="main_subtitle">Selecciona una función para probar la comunicación entre aplicaciones y pantallas.</string>
+    <string name="intents_counter">8 funciones requeridas · 5 implícitas + 3 explícitas</string>
+
+    <!-- Intents implícitos -->
+    <string name="implicit_title">Intents implícitos</string>
+    <string name="implicit_description">Android buscará una aplicación compatible para completar cada acción.</string>
+    <string name="map_title">1. Ubicación y mapa 🗺️</string>
+    <string name="location_pending">Ubicación aún no obtenida</string>
+    <string name="get_location">Obtener ubicación 🔰</string>
+    <string name="open_map">Abrir mapa \n 🗺️</string>
+    <string name="url_hint">2. Dirección de la página web</string>
+    <string name="default_url">https://www.google.com</string>
+    <string name="open_web">Abrir página web 🔗</string>
+    <string name="phone_hint">3. Número de teléfono </string>
+    <string name="open_dialer">Abrir marcador telefónico 📱</string>
+    <string name="email_hint">4. Correo electrónico </string>
+    <string name="prepare_email">Preparar correo 📫</string>
+    <string name="open_wifi">5. Abrir configuración de Wi-Fi 🛜</string>
+
+    <!-- Intents explícitos -->
+    <string name="explicit_title">Intents explícitos</string>
+    <string name="explicit_description">Estas opciones abren pantallas que pertenecen a la misma aplicación.</string>
+    <string name="go_second_activity">1. Ir a SegundaActivity ➡️</string>
+    <string name="go_detail_activity">2. Ir a DetalleActivity con datos</string>
+    <string name="go_help_activity">3. Ir a AyudaActivity</string>
+
+    <!-- Funciones adicionales -->
+    <string name="extras_title">Función adicional</string>
+    <string name="turn_on_flashlight">Encender linterna 🔦</string>
+    <string name="footer_note">Proyecto Android desarrollado en Java</string>
 </resources>
