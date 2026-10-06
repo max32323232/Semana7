@@ -690,7 +690,7 @@ public class MainActivity extends AppCompatActivity {
         Uri direccionCorreo = Uri.parse(
                 "mailto:" + Uri.encode(correo)
                                 + "?subject=" + Uri.encode(asunto)
-                                + "&body" + Uri.encode(mensaje)
+                                + "&body=" + Uri.encode(mensaje)
         );
 
         // Creamos el intent implícito
