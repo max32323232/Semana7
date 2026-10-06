@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <!-- Título -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ayuda"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAlignment="center" />
+
+
+        <!-- Introducción -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Cómo utilizar la aplicación?"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp" />
+
+
+        <!-- Explicación de los intents implícitos -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Intents implícitos"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Obtén tu ubicación y ábrela en el mapa.\n\n2. Ingresa una dirección para abrir una página web.\n\n3. Ingresa un teléfono para abrir el marcador.\n\n4. Ingresa un correo para preparar un mensaje.\n\n5. Abre la configuración de Wi-Fi."
+            android:textSize="16sp"
+            android:layout_marginTop="10dp" />
+
+
+        <!-- Explicación de los intents explícitos -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Intents explícitos"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estas opciones permiten navegar hacia SegundaActivity, DetalleActivity y AyudaActivity."
+            android:textSize="16sp"
+            android:layout_marginTop="10dp" />
+
+
+        <!-- Botón volver -->
+
+        <Button
+            android:id="@+id/btnVolverAyuda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VOLVER"
+            android:layout_marginTop="40dp" />
+
+    </LinearLayout>
+
+</ScrollView>

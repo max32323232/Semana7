@@ -2,37 +2,36 @@ package com.devst.semana7;
 
 import android.os.Bundle;
 import android.view.View;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.widget.Button;
 
-public class SegundaActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    Button btnVolver;
+public class AyudaActivity extends AppCompatActivity {
+
+    // Botón para regresar
+    Button btnVolverAyuda;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_segunda);
+        setContentView(R.layout.activity_ayuda);
+
 
         // =========================================
         // Conectar componente del XML
         // =========================================
 
-        btnVolver = findViewById(R.id.btnVolver);
+        btnVolverAyuda = findViewById(R.id.btnVolverAyuda);
 
 
         // =========================================
         // Botón volver
         // =========================================
 
-        btnVolver.setOnClickListener(
+        btnVolverAyuda.setOnClickListener(
                 new View.OnClickListener() {
 
                     @Override
@@ -46,4 +45,5 @@ public class SegundaActivity extends AppCompatActivity {
         );
 
     }
+
 }

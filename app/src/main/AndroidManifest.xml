@@ -1,49 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-
     <!-- ========================================= -->
     <!-- PERMISOS -->
     <!-- ========================================= -->
-
     <!-- Permiso para obtener ubicación aproximada -->
-    <uses-permission
-        android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Permiso para obtener ubicación precisa -->
-    <uses-permission
-        android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!-- Permiso para utilizar cámara / flash -->
-    <uses-permission
-        android:name="android.permission.CAMERA" />
-
-    <!--Acceso a internet para el mapa-->
-    <uses-permission
-        android:name="android.permission.INTERNET"/>
-
-
-    <!-- ========================================= -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Permiso para obtener ubicación precisa -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Permiso para utilizar cámara / flash -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Acceso a internet para el mapa -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- ========================================= -->
     <!-- HARDWARE -->
     <!-- ========================================= -->
-
     <!-- Indicamos que podemos utilizar el flash -->
     <!-- required=false permite instalar la app -->
     <!-- incluso si el dispositivo no tiene flash -->
-
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="false" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
-
-    <!-- ========================================= -->
-    <!-- APLICACIÓN -->
-    <!-- ========================================= -->
 
     <application
         android:allowBackup="true"
@@ -54,40 +30,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Semana7">
-
-
-        <!-- ===================================== -->
+        <activity
+            android:name=".AyudaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleActivity"
+            android:exported="false" /> <!-- ===================================== -->
         <!-- SEGUNDA PANTALLA -->
         <!-- ===================================== -->
-
         <activity
             android:name=".SegundaActivity"
-            android:exported="false" />
-
-
-        <!-- ===================================== -->
+            android:exported="false" /> <!-- ===================================== -->
         <!-- PANTALLA PRINCIPAL -->
         <!-- ===================================== -->
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
 
                 <!-- Indica que esta es la Activity principal -->
-                <action
-                    android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <!-- Permite que aparezca en el menú del teléfono -->
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
-
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
     </application>
 
 </manifest>

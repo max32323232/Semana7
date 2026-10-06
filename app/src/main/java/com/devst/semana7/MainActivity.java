@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnTelefono;
     Button btnCorreo;
     Button btnWifi;
+    Button btnDetalle;
+    Button btnAyuda;
 
     // Componentes Correo
     EditText etCorreo;
@@ -86,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         btnCorreo = findViewById(R.id.btnCorreo);
         etCorreo = findViewById(R.id.etCorreo);
         btnWifi = findViewById(R.id.btnWifi);
+        btnDetalle = findViewById(R.id.btnDetalle);
+        btnAyuda = findViewById(R.id.btnAyuda);
 
 
         txtUbicacion = findViewById(R.id.txtUbicacion);
@@ -244,6 +248,60 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        // =========================================
+        // INTENT EXPLÍCITO
+        // Abrir AyudaActivity
+        // =========================================
+
+        btnAyuda.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(
+                                MainActivity.this,
+                                AyudaActivity.class
+                        );
+
+                        startActivity(intent);
+
+                    }
+                }
+        );
+
+        // =========================================
+        // INTENT EXPLÍCITO
+        // Abrir DetalleActivity y enviar datos
+        // =========================================
+
+        btnDetalle.setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+                        // Indicamos que Activity queremos abrir
+                        Intent intent = new Intent(
+                                MainActivity.this,
+                                DetalleActivity.class
+                        );
+
+                        // Enviamos datos hacia DetalleActivity
+                        intent.putExtra(
+                                "NOMBRE_PROTOTIPO",
+                                "Prototipo 2 - Intents"
+                        );
+
+                        intent.putExtra(
+                                "CANTIDAD_INTENTS",
+                                8
+                        );
+
+                        startActivity(intent);
+                    }
+                }
+        );
 
         // =========================================
         // OBTENER GEOLOCALIZACIÓN
