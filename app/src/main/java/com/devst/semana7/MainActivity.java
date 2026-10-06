@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Patterns;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     Button btnSegundaVista;
     Button btnUbicacion;
     Button btnMapa;
+    Button btnWeb;
+
+    // Componentes Página Web
+    EditText etUrl;
 
     // TextView para mostrar ubicación
     TextView txtUbicacion;
@@ -64,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         btnSegundaVista = findViewById(R.id.btnSegundaVista);
         btnUbicacion = findViewById(R.id.btnUbicacion);
         btnMapa = findViewById(R.id.btnMapa);
+        btnWeb = findViewById(R.id.btnWeb);
+        etUrl = findViewById(R.id.etUrl);
 
         txtUbicacion = findViewById(R.id.txtUbicacion);
 
@@ -96,6 +104,20 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        // =========================================
+        // Intent Implícito
+        // Abrir Página Web
+        // =========================================
+
+        btnWeb.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        abrirPaginaWeb();
+                    }
+                }
+        );
 
         // =========================================
         // BOTÓN LINTERNA
@@ -374,9 +396,72 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // =============================================
+    // Abrir Página Web
+    // =============================================
+    private void abrirPaginaWeb(){
+
+        // Obtener dirección ingresada
+        String url = etUrl.getText()
+                .toString()
+                .trim();
+
+        // Validamos que el campo no esté vacío
+        if (url.isEmpty()){
+
+            etUrl.setError(
+                    "Debes ingresar una dirección web"
+            );
+            etUrl.requestFocus();
+            return;
+        }
+
+        // Agregamos https:// si el usuario no lo escribió
+        if (!url.startsWith("http://")
+                &&
+                !url.startsWith("http://")) {
+            url = "http://" + url;
+        }
+
+        // Validar formato de dirección
+        if (!Patterns.WEB_URL.matcher(url).matches()){
+
+            etUrl.setError(
+                    "La dirección web no es válida"
+            );
+
+            etUrl.requestFocus();
+
+            return;
+        }
+
+        // Convertimos el texto en una direccion URI
+        Uri paginaWeb = Uri.parse(url);
+
+        // Creamos el intent implícito
+        Intent intent = new Intent(
+                Intent.ACTION_VIEW,
+                paginaWeb
+        );
+
+        // Comprobamos que exista un navegador
+        if (intent.resolveActivity(
+                getPackageManager()) != null){
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(
+                    MainActivity.this,
+                    "No existe un navegador instalado",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+
+    }
+
 
     // =============================================
-    // ABRIR MAPA
+    // Abrir Mapa
     // =============================================
 
     private void abrirMapa() {
