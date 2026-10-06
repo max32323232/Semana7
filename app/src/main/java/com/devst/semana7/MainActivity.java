@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnWeb;
     Button btnTelefono;
     Button btnCorreo;
+    Button btnWifi;
 
     // Componentes Correo
     EditText etCorreo;
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         etTelefono = findViewById(R.id.etTelefono);
         btnCorreo = findViewById(R.id.btnCorreo);
         etCorreo = findViewById(R.id.etCorreo);
+        btnWifi = findViewById(R.id.btnWifi);
 
 
         txtUbicacion = findViewById(R.id.txtUbicacion);
@@ -128,6 +130,21 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
 
                         abrirPaginaWeb();
+                    }
+                }
+        );
+
+        // =========================================
+        // Intent Implícito
+        // Abrir Configuración de wifi
+        // =========================================
+
+        btnWifi.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view) {
+
+                        abrirConfiguracionWifi();
                     }
                 }
         );
@@ -564,6 +581,75 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(
                     MainActivity.this,
                     "No existe una aplicación de teléfono",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+    }
+
+    // =============================================
+    // Abrir Marcador Telefónico
+    // =============================================
+
+    private void prepararCorreo(){
+
+        // Obtenemos el correo ingresado
+        String correo = etCorreo.getText()
+                .toString()
+                .trim();
+
+        // Validamos que el campo no esté vacío
+        if (correo.isEmpty()) {
+
+            etCorreo.setError(
+                    "Debes ingresar un correo electrónico"
+            );
+
+            etCorreo.requestFocus();
+
+            return;
+        }
+
+        // Validamos el formato del correo
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+
+            etCorreo.setError(
+                    "El correo electrónico no es válido"
+            );
+
+            etCorreo.requestFocus();
+
+            return;
+        }
+
+        // Datos que aparecerán preparados
+        String asunto = "Prueba de Intent Android";
+
+        String mensaje =
+                "Hola, este correo fue preparado "
+                + "desde la aplicacion de Intents.";
+
+        // Creamos la dirección mailto
+        Uri direccionCorreo = Uri.parse(
+                "mailto:" + Uri.encode(correo)
+                                + "?subject=" + Uri.encode(asunto)
+                                + "&body" + Uri.encode(mensaje)
+        );
+
+        // Creamos el intent implícito
+        Intent intent = new Intent(
+                Intent.ACTION_SENDTO,
+                direccionCorreo
+        );
+
+        // Verificamos que exista una aplicación de correo
+        if (intent.resolveActivity(
+                getPackageManager()) != null) {
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(
+                    MainActivity.this,
+                    "No existe una aplicación de correo instalada",
                     Toast.LENGTH_SHORT
             ).show();
         }
