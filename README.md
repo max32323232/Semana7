@@ -250,9 +250,7 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ## 👥 Integrantes
 
-- Agregar nombre del integrante 1.
-- Agregar nombre del integrante 2, si corresponde.
-- Agregar nombre del integrante 3, si corresponde.
+- Máximo Rojas
 
 ## 📄 Estado del proyecto
 
