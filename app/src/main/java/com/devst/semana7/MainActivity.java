@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
     Button btnUbicacion;
     Button btnMapa;
     Button btnWeb;
+    Button btnTelefono;
+    Button btnCorreo;
+
+    // Componentes Correo
+    EditText etCorreo;
+
+    // Componentes Telefono
+    EditText etTelefono;
 
     // Componentes Página Web
     EditText etUrl;
@@ -72,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
         btnMapa = findViewById(R.id.btnMapa);
         btnWeb = findViewById(R.id.btnWeb);
         etUrl = findViewById(R.id.etUrl);
+        btnTelefono = findViewById(R.id.btnTelefono);
+        etTelefono = findViewById(R.id.etTelefono);
+        btnCorreo = findViewById(R.id.btnCorreo);
+        etCorreo = findViewById(R.id.etCorreo);
+
 
         txtUbicacion = findViewById(R.id.txtUbicacion);
 
@@ -120,37 +133,69 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // =========================================
-        // BOTÓN LINTERNA
+        // Intent Implícito
+        // Abrir el marcador Telefónico
         // =========================================
 
-        btnLinterna.setOnClickListener(
-                new View.OnClickListener() {
+        btnTelefono.setOnClickListener(
+                new View.OnClickListener(){
 
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View view){
 
-                        // Revisamos permiso de cámara
-                        if (ActivityCompat.checkSelfPermission(
-                                MainActivity.this,
-                                Manifest.permission.CAMERA)
-                                != PackageManager.PERMISSION_GRANTED) {
+                        abrirMarcador();
+                    }
+                }
+        );
 
-                            // Pedimos permiso
-                            ActivityCompat.requestPermissions(
-                                    MainActivity.this,
-                                    new String[]{
-                                            Manifest.permission.CAMERA
-                                    },
-                                    PERMISO_CAMARA
-                            );
+        // =========================================
+        // Intent Implícito
+        // Preparar un correo Electrónico
+        // =========================================
 
-                            return;
-                        }
+        btnCorreo.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                        cambiarLinterna();
+                        prepararCorreo();
 
                     }
-                });
+                }
+        );
+
+                // =========================================
+                // BOTÓN LINTERNA
+                // =========================================
+
+                btnLinterna.setOnClickListener(
+                        new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View view) {
+
+                                // Revisamos permiso de cámara
+                                if (ActivityCompat.checkSelfPermission(
+                                        MainActivity.this,
+                                        Manifest.permission.CAMERA)
+                                        != PackageManager.PERMISSION_GRANTED) {
+
+                                    // Pedimos permiso
+                                    ActivityCompat.requestPermissions(
+                                            MainActivity.this,
+                                            new String[]{
+                                                    Manifest.permission.CAMERA
+                                            },
+                                            PERMISO_CAMARA
+                                    );
+
+                                    return;
+                                }
+
+                                cambiarLinterna();
+
+                            }
+                        });
 
 
         // =========================================
@@ -459,6 +504,70 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // =============================================
+    // Abrir Marcador Telefónico
+    // =============================================
+
+    private void abrirMarcador() {
+        // Obtenemos el teléfono ingresado
+        String telefono = etTelefono.getText()
+                .toString()
+                .trim();
+
+        // Validamos que el campo no esté vacío
+        if (telefono.isEmpty()) {
+
+            etTelefono.setError(
+                    "Debes ingresar un número de teléfono"
+            );
+
+            etTelefono.requestFocus();
+            return;
+        }
+
+        // Eliminamos espacios, guiones y paréntesis
+        String telefonoLimpio = telefono
+                .replace(" ","")
+                .replace("-","")
+                .replace("(","")
+                .replace(")","");
+
+        // Validamos números nacionales e internacionales
+        if (!telefonoLimpio.matches("[+]?[0-9]{8,15}")){
+
+            etTelefono.setError(
+                    "El número de teléfono no es válido"
+            );
+
+            etTelefono.requestFocus();
+
+            return;
+        }
+
+        // Creamos la dirección telefónica
+        Uri numeroTelefono = Uri.parse(
+                "tel:" + telefonoLimpio
+        );
+
+        // Creamos el intent implícito
+        Intent intent = new Intent(
+                Intent.ACTION_DIAL,
+                numeroTelefono
+        );
+
+        // Verificamos que exista una aplicación compatible
+        if (intent.resolveActivity(
+                getPackageManager()) != null) {
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(
+                    MainActivity.this,
+                    "No existe una aplicación de teléfono",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+    }
 
     // =============================================
     // Abrir Mapa
