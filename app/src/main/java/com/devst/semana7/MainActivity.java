@@ -539,7 +539,7 @@ public class MainActivity extends AppCompatActivity {
         // Agregamos https:// si el usuario no lo escribió
         if (!url.startsWith("http://")
                 &&
-                !url.startsWith("http://")) {
+                !url.startsWith("https://")) {
             url = "http://" + url;
         }
 
