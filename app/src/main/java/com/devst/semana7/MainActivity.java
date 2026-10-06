@@ -656,6 +656,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // =============================================
+    // Abrir ajustes de Wi-Fi
+    // =============================================
+
+    private void abrirConfiguracionWifi() {
+        // Creamos un intent para abrir
+        // la configuración de Wi fi del teléfono
+        Intent intent = new Intent(
+                Settings.ACTION_WIFI_SETTINGS
+        );
+
+        if (intent.resolveActivity(
+                getPackageManager()) != null ) {
+
+            startActivity(intent);
+        } else {
+            Toast.makeText(
+                    MainActivity.this,
+                    "No se pudo abrir la configuración de Wi-Fi",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+    }
+
+    // =============================================
     // Abrir Mapa
     // =============================================
 
